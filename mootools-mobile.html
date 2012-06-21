@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link href="styles.css" type="text/css" rel="stylesheet">
+		<script type="text/javascript" src="libs/mootools-mobile/mootools-core.js"></script>
+		<script type="text/javascript" src="libs/mootools-mobile/custom-event.js"></script>
+		<script type="text/javascript" src="libs/mootools-mobile/Features.Touch.js"></script>
+		<script type="text/javascript" src="libs/mootools-mobile/Pinch.js"></script>
+		<script type="text/javascript">
+			window.addEvent('domready', function(){
+				var element = document.id('red'),
+					timer;
+
+				element.store('pinch:threshold', 0.4);
+				element.addEvent('pinch', function(event){
+					this.set('text', 'Pinch ' + event.pinch);
+
+					clearTimeout(timer);
+					timer = (function(){
+						this.set('text', 'Pinch');
+					}).delay(500, this);
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="info">
+			Supported gestures: x y z
+		</div>
+		<div id="red">
+			Touch me :)
+		</div>
+	</body>
+</html>
